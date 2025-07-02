@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سایت</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,70 +18,7 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <style>
-        :root {
-            --primary-color: #4f46e5;
-            --secondary-color: #f59e0b;
-            --accent-color: #10b981;
-            --dark-color: #1e293b;
-            --light-color: #f8fafc;
-        }
-        
-        body {
-            font-family: Vazirmatn, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-        
-        .persian-shadow {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-        }
-        
-        .nav-item:hover {
-            color: var(--secondary-color);
-            transform: translateY(-2px);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: #4338ca;
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #d97706;
-            transform: translateY(-2px);
-        }
-        
-        .footer-link:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
-        
-        /* Animation for Persian elements */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadein {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-    </style>
+    
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- هدر سایت -->
@@ -183,30 +120,5 @@
         </div>
     </footer>
 
-    <!-- اسکریپت‌های جاوااسکریپت -->
-    <script>
-        // اسکریپت‌های سفارشی می‌توانند اینجا قرار بگیرند
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('سایت با موفقیت بارگذاری شد!');
-            
-            // افزودن کلاس به عناصر برای انیمیشن
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            elements.forEach(el => {
-                el.classList.add('opacity-0');
-            });
-            
-            // مشاهده‌گر برای انیمیشن‌های اسکرول
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fadein');
-                        entry.target.classList.remove('opacity-0');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            elements.forEach(el => observer.observe(el));
-        });
-    </script>
 </body>
 </html>
