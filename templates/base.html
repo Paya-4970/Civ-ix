@@ -1,0 +1,212 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Font Persian -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f59e0b;
+            --accent-color: #10b981;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+        }
+        
+        body {
+            font-family: Vazirmatn, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .persian-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        }
+        
+        .nav-item:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        /* Animation for Persian elements */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadein {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- هدر سایت -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- لوگو و نام سایت -->
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-palette text-2xl text-indigo-600"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold">سایت <span class="text-yellow-300">ایرانی</span> من</h1>
+                </div>
+                
+                <!-- منوی ناوبری -->
+                <nav class="flex flex-wrap justify-center gap-6 md:gap-8">
+                    <a href="/" class="nav-item text-lg font-medium hover:text-yellow-300 transition">خانه</a>
+                    <a href="/about" class="nav-item text-lg font-medium hover:text-yellow-300 transition">درباره ما</a>
+                    <a href="/services" class="nav-item text-lg font-medium hover:text-yellow-300 transition">خدمات</a>
+                    <a href="/blog" class="nav-item text-lg font-medium hover:text-yellow-300 transition">بلاگ</a>
+                    <a href="/contact" class="nav-item text-lg font-medium hover:text-yellow-300 transition">تماس با ما</a>
+                </nav>
+                
+                <!-- دکمه‌های اقدام -->
+                <div class="mt-4 md:mt-0 flex gap-3">
+                    <button class="btn-primary px-4 py-2 rounded-lg text-white font-medium flex items-center">
+                        <i class="fas fa-user-plus ml-2"></i>
+                        ثبت نام
+                    </button>
+                    <button class="btn-secondary px-4 py-2 rounded-lg text-white font-medium flex items-center">
+                        <i class="fas fa-sign-in-alt ml-2"></i>
+                        ورود
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوای اصلی -->
+    <main class="flex-grow container mx-auto px-4 py-8 animate-fadein">
+        {% block content %}
+        <!-- محتوای صفحات دیگر اینجا جایگزین می‌شود -->
+        {% endblock %}
+    </main>
+
+    <!-- فوتر سایت -->
+    <footer class="bg-slate-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- درباره سایت -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 text-yellow-300">درباره ما</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        سایت ایرانی من یک پلتفرم مدرن و شیک برای ارائه خدمات دیجیتال به کاربران فارسی زبان است. ما با آخرین تکنولوژی‌های روز دنیا در خدمت شما هستیم.
+                    </p>
+                    <div class="mt-4 flex gap-4">
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <!-- لینک‌های سریع -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-300">لینک‌های سریع</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/privacy" class="footer-link text-slate-300 hover:text-yellow-300 transition">قوانین و حریم خصوصی</a></li>
+                        <li><a href="/faq" class="footer-link text-slate-300 hover:text-yellow-300 transition">سوالات متداول</a></li>
+                        <li><a href="/support" class="footer-link text-slate-300 hover:text-yellow-300 transition">پشتیبانی</a></li>
+                        <li><a href="/sitemap" class="footer-link text-slate-300 hover:text-yellow-300 transition">نقشه سایت</a></li>
+                    </ul>
+                </div>
+                
+                <!-- اطلاعات تماس -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-300">تماس با ما</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 ml-2 text-yellow-300"></i>
+                            <span>تهران، خیابان آزادی، پلاک ۱۲۳</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 ml-2 text-yellow-300"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 ml-2 text-yellow-300"></i>
+                            <span>info@mysite.ir</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- کپی رایت -->
+            <div class="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400">
+                <p>تمامی حقوق برای سایت ایرانی من محفوظ است. © ۱۴۰۲</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- اسکریپت‌های جاوااسکریپت -->
+    <script>
+        // اسکریپت‌های سفارشی می‌توانند اینجا قرار بگیرند
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('سایت با موفقیت بارگذاری شد!');
+            
+            // افزودن کلاس به عناصر برای انیمیشن
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(el => {
+                el.classList.add('opacity-0');
+            });
+            
+            // مشاهده‌گر برای انیمیشن‌های اسکرول
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadein');
+                        entry.target.classList.remove('opacity-0');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

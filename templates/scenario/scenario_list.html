@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>سناریو ها</h1>
+<br>
+<ul>
+    {% for scenario in scenarios %}
+    <li>
+        <a>{{ scenario.title }}</a>
+    </li>
+    <br>
+    <hr>
+    {% endfor %}
+</ul>
+{% endblock %}
+
