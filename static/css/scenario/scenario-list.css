@@ -1,0 +1,94 @@
+    /* استایل‌های سفارشی */
+    .scenario-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    .scenario-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    .scenario-title:after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: #4f46e5;
+        margin: 0.5rem auto 0;
+        border-radius: 2px;
+    }
+    
+    .scenario-list {
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+    }
+    
+    .scenario-item {
+        transition: all 0.3s ease;
+    }
+    
+    .scenario-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+        color: #334155;
+        transition: all 0.2s ease;
+    }
+    
+    .scenario-link:hover {
+        background-color: #f8fafc;
+        transform: translateX(-4px);
+    }
+    
+    .scenario-item-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+    }
+    
+    .scenario-description {
+        font-size: 0.875rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+    }
+    
+    .scenario-arrow {
+        color: #94a3b8;
+        transition: all 0.2s ease;
+    }
+    
+    .scenario-link:hover .scenario-arrow {
+        color: #4f46e5;
+        transform: translateX(-4px);
+    }
+    
+    .scenario-divider {
+        height: 1px;
+        background-color: #e2e8f0;
+        margin: 0 1.5rem;
+    }
+    
+    /* حالت موبایل */
+    @media (max-width: 640px) {
+        .scenario-container {
+            padding: 1rem;
+        }
+        
+        .scenario-title {
+            font-size: 1.5rem;
+        }
+        
+        .scenario-link {
+            padding: 1rem;
+        }
+    }

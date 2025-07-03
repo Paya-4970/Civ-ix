@@ -26,6 +26,7 @@ class MyUserManager(BaseUserManager):
         user.is_staff = True
         user.save(using=self._db)
         return user
+    
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
@@ -36,6 +37,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created_time = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
+    is_main = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
@@ -50,3 +52,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return self.is_superuser or self.is_admin
+    
+    def make_main(self):
+        self.is_main = True
+        self.save()
