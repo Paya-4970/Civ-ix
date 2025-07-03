@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    
+    {% for session in sessions %}
+        <div>{{session.title}}</div>
+        <br>
+        <hr>
+    {% endfor %}
+        
+{% endblock content %}
+    
