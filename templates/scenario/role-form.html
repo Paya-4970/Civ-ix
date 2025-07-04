@@ -1,16 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-    
-    {% if form %}
-        <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">save</button>
-        </form>
-    {% endif %}
+<div class="role-form-container">
+    <div class="role-form-card">
+        <!-- عنوان فرم -->
+        <div class="role-form-header">
+            <h1 class="role-form-title">افزودن نقش جدید</h1>
+            <div class="title-underline"></div>
+        </div>
         
-{% endblock content %}
-    
+        <!-- بخش فرم -->
+        {% if form %}
+        <form method="POST" class="role-form">
+            {% csrf_token %}
+            
+            <div class="form-fields">
+                {% for field in form %}
+                <div class="form-row">
+                    <label for="{{ field.id_for_label }}" class="field-label">
+                        {{ field.label }}
+                        {% if field.field.required %}
+                        <span class="required-mark">*</span>
+                        {% endif %}
+                    </label>
+                    
+                    {{ field }}
+                    
+                    {% if field.help_text %}
+                    <p class="field-help">{{ field.help_text }}</p>
+                    {% endif %}
+                    
+                    {% for error in field.errors %}
+                    <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-save"></i>
+                    ذخیره نقش
+                </button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/scenario/role-form.css' %}">
+
+{% endblock %}

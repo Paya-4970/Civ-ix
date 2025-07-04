@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto p-6">
+    <div class="bg-white rounded-xl shadow-md p-8 border border-gray-200">
+        <!-- عنوان فرم -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-gray-800">اضافه کردن گزینه تصمیم</h1>
+            <div class="w-16 h-1 bg-blue-500 mx-auto mt-3 rounded-full"></div>
+        </div>
+        
+        <!-- بخش فرم -->
+        {% if form %}
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            
+            <div class="space-y-4">
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ field.label }}
+                        {% if field.field.required %}
+                        <span class="text-red-500">*</span>
+                        {% endif %}
+                    </label>
+                    
+                    {{ field }}
+                    
+                    {% if field.help_text %}
+                    <p class="mt-1 text-xs text-blue-600">{{ field.help_text }}</p>
+                    {% endif %}
+                    
+                    {% for error in field.errors %}
+                    <p class="mt-1 text-xs text-red-600">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="flex justify-end pt-4 border-t border-gray-100">
+                <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                    <i class="fas fa-save ml-2"></i>
+                    ذخیره
+                </button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/scenario/decision-form.css' %}">
+{% endblock %}

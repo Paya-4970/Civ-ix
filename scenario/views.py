@@ -28,8 +28,20 @@ def add_role(request):
     if request.method == 'POST':
        form = RoleForm(request.POST)
        if form.is_valid():
-           form.save()   
+           form.save() 
+           return redirect('/')   
     else:
         form = RoleForm()
         
     return render(request, 'scenario/role-form.html',{'form':form})
+
+def add_decision_option(request):
+    if request.method == 'POST':
+       form = DecisionOptionForm(request.POST)
+       if form.is_valid():
+           form.save()   
+           return redirect('/') 
+    else:
+        form = DecisionOptionForm()
+        
+    return render(request, 'scenario/decision-form.html',{'form':form})
