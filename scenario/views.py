@@ -35,6 +35,7 @@ def add_role(request):
         
     return render(request, 'scenario/role-form.html',{'form':form})
 
+@if_is_main
 def add_decision_option(request):
     if request.method == 'POST':
        form = DecisionOptionForm(request.POST)

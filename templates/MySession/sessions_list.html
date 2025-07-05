@@ -1,14 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-    
-    {% for session in sessions %}
-        <div>{{session.title}}</div>
-        <br>
-        <hr>
-    {% endfor %}
-        
-{% endblock content %}
-    
+<div class="sessions-container">
+    <div class="sessions-header">
+        <h1 class="sessions-title">Training Sessions</h1>
+        <div class="title-divider"></div>
+    </div>
+
+    <div class="sessions-list">
+        {% for session in sessions %}
+        <div class="session-card">
+            <div class="session-content">
+                <h3 class="session-title">{{ session.title }}</h3>
+                {% if session.description %}
+                <p class="session-description">{{ session.description }}</p>
+                {% endif %}
+                <div class="session-meta">
+                    {% if session.date %}
+                    <span class="meta-item">
+                        <i class="far fa-calendar-alt"></i>
+                        {{ session.date }}
+                    </span>
+                    {% endif %}
+                    {% if session.duration %}
+                    <span class="meta-item">
+                        <i class="far fa-clock"></i>
+                        {{ session.duration }} minutes
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="session-actions">
+                <a href="#" class="action-link view-link">
+                    <i class="far fa-eye"></i>
+                    View
+                </a>
+                <a href="#" class="action-link edit-link">
+                    <i class="far fa-edit"></i>
+                    Edit
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <i class="far fa-folder-open"></i>
+            <p>No sessions available</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/Mysession/session-list.css' %}">
+{% endblock %}

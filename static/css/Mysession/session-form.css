@@ -1,0 +1,148 @@
+ /* Main Container Styles */
+ .session-form-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Card Styles */
+.session-form-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+    border: 1px solid #f0f0f0;
+}
+
+/* Header Styles */
+.form-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    color: #2d3748;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.header-divider {
+    width: 80px;
+    height: 4px;
+    background: #4c51bf;
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Form Field Styles */
+.form-field-group {
+    margin-bottom: 1.8rem;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.95rem;
+    color: #4a5568;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+}
+
+.required-indicator {
+    color: #e53e3e;
+    margin-left: 0.3rem;
+}
+
+/* Input Field Styles */
+.session-form input[type="text"],
+.session-form input[type="number"],
+.session-form input[type="datetime-local"],
+.session-form input[type="date"],
+.session-form input[type="time"],
+.session-form select,
+.session-form textarea {
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    background-color: #f8fafc;
+}
+
+.session-form input:focus,
+.session-form select:focus,
+.session-form textarea:focus {
+    outline: none;
+    border-color: #4c51bf;
+    box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.15);
+    background-color: white;
+}
+
+.session-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Help and Error Messages */
+.field-help {
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.4rem;
+}
+
+.field-error {
+    font-size: 0.8rem;
+    color: #e53e3e;
+    margin-top: 0.4rem;
+}
+
+/* Submit Button */
+.form-actions {
+    margin-top: 2.5rem;
+    text-align: right;
+}
+
+.submit-button {
+    background-color: #4c51bf;
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.submit-button:hover {
+    background-color: #434190;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 81, 191, 0.2);
+}
+
+.button-icon {
+    margin-right: 0.7rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .session-form-card {
+        padding: 1.5rem;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .submit-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+input, textarea,select{
+    color: black 
+}
+ 

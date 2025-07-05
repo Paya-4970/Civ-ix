@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="participant-form-container">
+    <div class="participant-form-card">
+        <!-- Form Header -->
+        <div class="form-header">
+            <h1 class="form-title">
+                <i class="fas fa-user-plus"></i>
+                Add New Participant
+            </h1>
+            <p class="form-subtitle">Please fill in the participant details below</p>
+        </div>
+
+        <!-- Form Content -->
+        {% if form %}
+        <form method="POST" class="participant-form">
+            {% csrf_token %}
+
+            <div class="form-grid">
+                {% for field in form %}
+                <div class="form-field">
+                    <label for="{{ field.id_for_label }}" class="field-label">
+                        {{ field.label }}
+                        {% if field.field.required %}
+                        <span class="required-mark">*</span>
+                        {% endif %}
+                    </label>
+
+                    <div class="field-input">
+                        {{ field }}
+                        {% if field.help_text %}
+                        <p class="help-text">{{ field.help_text }}</p>
+                        {% endif %}
+                        {% for error in field.errors %}
+                        <p class="error-text">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-save"></i>
+                    Save Participant
+                </button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/Mysession/participant-form.css' %}">
+{% endblock %}

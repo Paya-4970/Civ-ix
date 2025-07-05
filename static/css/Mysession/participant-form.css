@@ -1,0 +1,165 @@
+    /* Main Container */
+    .participant-form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    /* Form Card */
+    .participant-form-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        padding: 2.5rem;
+        border: 1px solid #f0f0f0;
+    }
+
+    /* Form Header */
+    .form-header {
+        margin-bottom: 2rem;
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+        color: #2d3748;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .form-title i {
+        color: #4c51bf;
+    }
+
+    .form-subtitle {
+        color: #718096;
+        font-size: 1rem;
+    }
+
+    /* Form Grid Layout */
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    /* Form Fields */
+    .form-field {
+        margin-bottom: 1.5rem;
+    }
+
+    .field-label {
+        display: block;
+        font-size: 0.95rem;
+        color: #4a5568;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .required-mark {
+        color: #e53e3e;
+        margin-left: 0.25rem;
+    }
+
+    /* Input Fields */
+    .participant-form input[type="text"],
+    .participant-form input[type="email"],
+    .participant-form input[type="tel"],
+    .participant-form input[type="date"],
+    .participant-form select,
+    .participant-form textarea {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.25s ease;
+        background-color: #f8fafc;
+    }
+
+    .participant-form input:focus,
+    .participant-form select:focus,
+    .participant-form textarea:focus {
+        outline: none;
+        border-color: #4c51bf;
+        box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.15);
+        background-color: white;
+    }
+
+    .participant-form textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    /* Help and Error Text */
+    .help-text {
+        font-size: 0.8rem;
+        color: #718096;
+        margin-top: 0.5rem;
+    }
+
+    .error-text {
+        font-size: 0.8rem;
+        color: #e53e3e;
+        margin-top: 0.5rem;
+    }
+
+    /* Submit Button */
+    .form-actions {
+        margin-top: 2rem;
+        text-align: right;
+    }
+
+    .submit-button {
+        background-color: #4c51bf;
+        color: white;
+        border: none;
+        padding: 0.9rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .submit-button:hover {
+        background-color: #434190;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 81, 191, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        .participant-form-card {
+            padding: 1.5rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .submit-button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        color: black
+    }

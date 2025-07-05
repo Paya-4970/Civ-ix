@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="session-form-container">
+    <div class="session-form-card">
+        <!-- Form Header -->
+        <div class="form-header">
+            <h1 class="form-title">Create New Session</h1>
+            <div class="header-divider"></div>
+        </div>
+
+        <!-- Form Content -->
+        {% if form %}
+        <form method="POST" class="session-form">
+            {% csrf_token %}
+            
+            <div class="form-content">
+                {% for field in form %}
+                <div class="form-field-group">
+                    <label for="{{ field.id_for_label }}" class="field-label">
+                        {{ field.label }}
+                        {% if field.field.required %}
+                        <span class="required-indicator">*</span>
+                        {% endif %}
+                    </label>
+                    
+                    <div class="field-wrapper">
+                        {{ field }}
+                    </div>
+                    
+                    {% if field.help_text %}
+                    <p class="field-help">{{ field.help_text }}</p>
+                    {% endif %}
+                    
+                    {% for error in field.errors %}
+                    <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-save button-icon"></i>
+                    Save Session
+                </button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/Mysession/session-form.css' %}">
+{% endblock %}
