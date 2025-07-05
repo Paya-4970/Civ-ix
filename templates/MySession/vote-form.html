@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="vote-container">
+    <div class="vote-card">
+        <!-- Voting Header -->
+        <div class="vote-header">
+            <h1 class="vote-title">
+                <i class="fas fa-vote-yea"></i>
+                Cast Your Vote
+            </h1>
+            <p class="vote-subtitle">Your opinion matters to us</p>
+        </div>
+
+        <!-- Voting Form -->
+        {% if form %}
+        <form method="POST" class="vote-form">
+            {% csrf_token %}
+
+            <div class="vote-options">
+                {% for field in form %}
+                <div class="vote-option">
+                    <label class="option-label">
+                        {{ field }}
+                        <span class="option-text">{{ field.label }}</span>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="vote-actions">
+                <button type="submit" class="submit-vote">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Vote
+                </button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/Mysession/vote-form.css' %}">
+{% endblock %}

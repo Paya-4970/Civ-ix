@@ -17,7 +17,7 @@ class MySession(models.Model):
         return f'{self.user.username} - {self.scenario.title}'
 
 class Participant(models.Model):
-    session = models.ForeignKey(MySession, on_delete=models.CASCADE)
+    session = models.ForeignKey(MySession, on_delete=models.CASCADE, related_name='participant')
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     joined_at = models.DateTimeField(auto_now_add=True)
@@ -27,6 +27,7 @@ class Participant(models.Model):
         return f'{self.user.username} - {self.role.name}'
     
 class Vote(models.Model):
+    # session = models.ForeignKey(MySession, on_delete=models.CASCADE, null=True)
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     decision_option = models.ForeignKey(DecisionOption, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

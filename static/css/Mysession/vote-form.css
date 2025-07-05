@@ -1,0 +1,156 @@
+    /* Main Container */
+    .vote-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    /* Voting Card */
+    .vote-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        padding: 2.5rem;
+        border: 1px solid #f0f0f0;
+    }
+
+    /* Header Styles */
+    .vote-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .vote-title {
+        font-size: 1.8rem;
+        color: #2d3748;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .vote-title i {
+        color: #4c51bf;
+    }
+
+    .vote-subtitle {
+        color: #718096;
+        font-size: 1rem;
+    }
+
+    /* Voting Options */
+    .vote-options {
+        margin: 2rem 0;
+    }
+
+    .vote-option {
+        margin-bottom: 1rem;
+    }
+
+    .option-label {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        position: relative;
+    }
+
+    .option-label:hover {
+        background-color: #edf2f7;
+        border-color: #cbd5e0;
+    }
+
+    .option-text {
+        margin-left: 1rem;
+        font-size: 1rem;
+        color: #2d3748;
+        font-weight: 500;
+    }
+
+    /* Custom Radio/Checkbox */
+    .checkmark {
+        position: absolute;
+        right: 1.5rem;
+        height: 20px;
+        width: 20px;
+        border: 2px solid #cbd5e0;
+        border-radius: 50%;
+        transition: all 0.25s ease;
+    }
+
+    input[type="radio"]:checked~.checkmark,
+    input[type="checkbox"]:checked~.checkmark {
+        border-color: #4c51bf;
+        background-color: #4c51bf;
+    }
+
+    input[type="radio"]:checked~.checkmark::after,
+    input[type="checkbox"]:checked~.checkmark::after {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 4px;
+        left: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+
+    /* Hide default inputs */
+    .vote-form input[type="radio"],
+    .vote-form input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Submit Button */
+    .submit-vote {
+        background-color: #4c51bf;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .submit-vote:hover {
+        background-color: #434190;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 81, 191, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        .vote-card {
+            padding: 1.5rem;
+        }
+
+        .vote-title {
+            font-size: 1.5rem;
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        color: black
+    }

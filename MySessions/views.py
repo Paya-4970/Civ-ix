@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import MySession
+from .models import MySession, Participant
 from decorators.is_main import if_is_main
 from .forms import VoteForm, ParticipantForm, MySessionForm
+
 
 def mysession_list(request):
     sessions = MySession.objects.filter(is_active=True)
@@ -38,17 +39,19 @@ def add_participant(request):
     return render(request,'MySession/participant-form.html', {'form':form})
             
 @if_is_main
-def add_mysession(request):
+def add_vote(request, session):
     user = request.user
+    participant = Participant.objects.get(session_id = session, user=user)
     if request.method == 'POST':
-        form = MySessionForm(request.POST)
+        form = VoteForm(request.POST)
         if form.is_valid():
-            form = form.save(commit=False)
-            form.user = user
-            form.save()
+            vote = form.save(commit=False)
+            vote.participant = participant
+            vote.save()
             return redirect('/')
     else:
-        form = MySessionForm()
+        form = VoteForm()
         
-    return render(request,'MySession/session-form.html', {'form':form})
+    return render(request,'MySession/vote-form.html', {'form':form})
+    
             
