@@ -56,10 +56,14 @@ def add_role(request):
 
 @if_is_main
 def add_decision_option(request):
+    session = request.session.get('current_id_scenario')
     if request.method == 'POST':
+       scenario = Scenario.objects.get(id = session) 
        form = DecisionOptionForm(request.POST)
        if form.is_valid():
-           form.save()   
+           decision = form.save(commit=False)   
+           decision.scenario = scenario
+           decision.save()
            return redirect('/') 
     else:
         form = DecisionOptionForm()

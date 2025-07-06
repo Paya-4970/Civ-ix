@@ -14,4 +14,4 @@ class RoleForm(forms.ModelForm):
 class DecisionOptionForm(forms.ModelForm):
     class Meta:
         model = DecisionOption
-        fields = ['scenario','title', 'description']
+        fields = ['title', 'description']
