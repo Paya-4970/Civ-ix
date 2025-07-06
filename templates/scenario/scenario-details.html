@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div>
+        {{scenarios.title}}
+    </div>
+    <a href="">ساخت شرکت در این مورد</a>
+    <a href="{% url 'scenario:role_form' %}">ساخت رول</a>
+    <a href="{% url 'scenario:decision_form' %}">ساخت گزینه ی انتخاب</a>
+{% endblock content %}
+    

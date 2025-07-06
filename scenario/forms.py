@@ -9,7 +9,7 @@ class ScenarioForm(forms.ModelForm):
 class RoleForm(forms.ModelForm):
     class Meta:
         model = Role
-        fields = ['scenario', 'name','description']
+        fields = ['name','description']
 
 class DecisionOptionForm(forms.ModelForm):
     class Meta:
