@@ -1,0 +1,117 @@
+    /* استایل کلی صفحه */
+    .scenario-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    /* هدر سناریو */
+    .scenario-header {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid #eaeaea;
+    }
+
+    .scenario-title {
+        font-size: 2rem;
+        color: #2d3748;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    /* دکمه‌های اقدام */
+    .scenario-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .action-btn i {
+        margin-left: 0.5rem;
+    }
+
+    .create-btn {
+        background-color: #4f46e5;
+        color: white;
+    }
+
+    .create-btn:hover {
+        background-color: #4338ca;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2);
+    }
+
+    .role-btn {
+        background-color: #10b981;
+        color: white;
+    }
+
+    .role-btn:hover {
+        background-color: #0d9f6e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
+    }
+
+    .decision-btn {
+        background-color: #f59e0b;
+        color: white;
+    }
+
+    .decision-btn:hover {
+        background-color: #d97706;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(245, 158, 11, 0.2);
+    }
+
+    /* محتوای سناریو */
+    .scenario-content {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+        border: 1px solid #eaeaea;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+        color: #2d3748;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #f3f4f6;
+    }
+
+    /* واکنش‌گرایی */
+    @media (max-width: 768px) {
+        .scenario-actions {
+            flex-direction: column;
+        }
+
+        .action-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        color: black;
+    }

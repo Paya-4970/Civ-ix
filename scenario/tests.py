@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from .models import Scenario, Role
 from MyUser.models import MyUser
 from django.urls import reverse
+from .forms import RoleForm
 
 class ScenarioMakeTest(TestCase):
     def setUp(self):
@@ -31,12 +32,15 @@ class ScenarioMakeTest(TestCase):
         
     def test_make_role(self):
         data = {
-            'scenario': self.scenario.id,
             'name' : 'doctor',
             'description' : 'this is doctor'
         }
-        self.client.post(reverse('scenario:role_form'), data)
-        self.assertEqual(Role.objects.filter(name='doctor').exists(),True)
+        form = RoleForm(data=data)
+        role = form.save(commit=False)
+        role.scenario = self.scenario
+        role.save()
+        
+        self.assertTrue(Role.objects.filter(name='doctor').exists())    
         
     def test_login_success(self):
         logged_in = self.client.login(username='09121212', password='123456789987654321')

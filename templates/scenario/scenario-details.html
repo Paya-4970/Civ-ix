@@ -1,13 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-    <div>
-        {{scenarios.title}}
+<div class="scenario-container">
+    <!-- هدر صفحه -->
+    <div class="scenario-header">
+        <h1 class="scenario-title">{{ scenarios.title }}</h1>
+        <div class="scenario-actions">
+            <a href="" class="action-btn create-btn">
+                <i class="fas fa-user-plus"></i>
+                ساخت شرکت در این مورد
+            </a>
+            <a href="{% url 'scenario:role_form' %}" class="action-btn role-btn">
+                <i class="fas fa-user-tag"></i>
+                ساخت رول
+            </a>
+            <a href="{% url 'scenario:decision_form' %}" class="action-btn decision-btn">
+                <i class="fas fa-tasks"></i>
+                ساخت گزینه انتخاب
+            </a>
+        </div>
     </div>
-    <a href="">ساخت شرکت در این مورد</a>
-    <a href="{% url 'scenario:role_form' %}">ساخت رول</a>
-    <a href="{% url 'scenario:decision_form' %}">ساخت گزینه ی انتخاب</a>
-{% endblock content %}
-    
+
+    <!-- محتوای سناریو -->
+    <div class="scenario-content">
+        {% if scenarios.description %}
+        <div class="scenario-description">
+            <h3 class="section-title">توضیحات سناریو</h3>
+            <p>{{ scenarios.description }}</p>
+        </div>
+        {% endif %}
+
+        <!-- بخش‌های دیگر سناریو را اینجا اضافه کنید -->
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/scenario/scenario-details.css' %}">
+{% endblock %}
