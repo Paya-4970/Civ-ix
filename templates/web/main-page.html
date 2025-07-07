@@ -1,14 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-    <h1>
-        this is my main page
-    </h1>
-    <a href="{% url 'scenario:scenario_form' %}">add scenario</a>
-    <a href="{% url 'MySession:session_list' %}">active sessions</a>
-    <a href="{% url 'scenario:scenario_list' %}">all scenario</a>
-        
-{% endblock content %}
-    
+<div class="main-page-container">
+    <!-- هدر صفحه اصلی -->
+    <header class="main-header">
+        <h1 class="main-title">
+            <i class="fas fa-home"></i>
+            این صفحه اصلی من است
+        </h1>
+        <p class="welcome-text">به سیستم مدیریت سناریوها خوش آمدید</p>
+    </header>
+
+    <!-- کارت‌های دسترسی سریع -->
+    <div class="quick-access-cards">
+        <!-- کارت اضافه کردن سناریو -->
+        <a href="{% url 'scenario:scenario_form' %}" class="access-card scenario-card">
+            <div class="card-icon">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <h3 class="card-title">اضافه کردن سناریو</h3>
+            <p class="card-description">سناریو جدید ایجاد کنید</p>
+        </a>
+
+        <!-- کارت جلسات فعال -->
+        <a href="{% url 'MySession:session_list' %}" class="access-card session-card">
+            <div class="card-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3 class="card-title">جلسات فعال</h3>
+            <p class="card-description">مشاهده و مدیریت جلسات</p>
+        </a>
+
+        <!-- کارت تمام سناریوها -->
+        <a href="{% url 'scenario:scenario_list' %}" class="access-card all-scenarios-card">
+            <div class="card-icon">
+                <i class="fas fa-list-ul"></i>
+            </div>
+            <h3 class="card-title">تمام سناریوها</h3>
+            <p class="card-description">مشاهده لیست کامل سناریوها</p>
+        </a>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/web/main-page.css' %}">
+{% endblock %}

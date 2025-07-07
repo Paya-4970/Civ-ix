@@ -1,0 +1,111 @@
+    /* استایل کلی صفحه */
+    .main-page-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    /* هدر صفحه */
+    .main-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+        color: #2d3748;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .main-title i {
+        color: #4f46e5;
+    }
+
+    .welcome-text {
+        font-size: 1.1rem;
+        color: #718096;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* کارت‌های دسترسی سریع */
+    .quick-access-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .access-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eaeaea;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .access-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .scenario-card .card-icon {
+        background-color: rgba(79, 70, 229, 0.1);
+        color: #4f46e5;
+    }
+
+    .session-card .card-icon {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+    }
+
+    .all-scenarios-card .card-icon {
+        background-color: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        color: #2d3748;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+        font-size: 0.95rem;
+        color: #718096;
+        line-height: 1.5;
+    }
+
+    /* واکنش‌گرایی */
+    @media (max-width: 768px) {
+        .main-title {
+            font-size: 2rem;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .quick-access-cards {
+            grid-template-columns: 1fr;
+        }
+    }

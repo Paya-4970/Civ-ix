@@ -18,7 +18,7 @@ class MySession(models.Model):
 
 class Participant(models.Model):
     session = models.ForeignKey(MySession, on_delete=models.CASCADE, related_name='participant')
-    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, default='common')
     is_active = models.BooleanField(default=True)
     joined_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)

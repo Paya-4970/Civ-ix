@@ -6,7 +6,7 @@ from scenario.models import Scenario
 
 
 def mysession_list(request):
-    sessions = MySession.objects.filter(is_active=True)
+    sessions = MySession.objects.filter(is_active=True).order_by('-created_at')
     context = {
         'sessions':sessions
     }
