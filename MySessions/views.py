@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import MySession, Participant
 from decorators.is_main import if_is_main
 from .forms import VoteForm, ParticipantForm, MySessionForm
+from scenario.models import Scenario
 
 
 def mysession_list(request):
@@ -14,11 +15,14 @@ def mysession_list(request):
 @if_is_main
 def add_mysession(request):
     user = request.user
+    session = request.session.get('current_id_scenario')
+    scenario = Scenario.objects.get(id = session)
     if request.method == 'POST':
         form = MySessionForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
             form.user = user
+            form.scenario = scenario
             form.save()
             return redirect('/')
     else:

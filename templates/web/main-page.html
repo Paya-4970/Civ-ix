@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h1>
+        this is my main page
+    </h1>
+    <a href="{% url 'scenario:scenario_form' %}">add scenario</a>
+    <a href="{% url 'MySession:session_list' %}">active sessions</a>
+    <a href="{% url 'scenario:scenario_list' %}">all scenario</a>
+        
+{% endblock content %}
+    

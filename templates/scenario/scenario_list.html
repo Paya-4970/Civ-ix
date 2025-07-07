@@ -8,7 +8,7 @@
     <div class="scenario-list">
         {% for scenario in scenarios %}
         <div class="scenario-item">
-            <a href="#" class="scenario-link">
+            <a href="{% url 'scenario:scenario_by_id' scenario.id %}" class="scenario-link">
                 <div class="scenario-content">
                     <h3 class="scenario-item-title">{{ scenario.title }}</h3>
                     {% if scenario.description %}

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scenario',
     'MyUser',
-    'MySessions'
+    'MySessions',
+    'web',
 ]
 
 MIDDLEWARE = [

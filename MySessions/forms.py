@@ -4,7 +4,7 @@ from .models import Vote, MySession, Participant
 class MySessionForm(forms.ModelForm):
     class Meta:
         model = MySession
-        fields = ['scenario','title','description']
+        fields = ['title','description']
         
 
 class VoteForm(forms.ModelForm):
