@@ -5,12 +5,20 @@ from .forms import VoteForm, ParticipantForm, MySessionForm
 from scenario.models import Scenario
 
 
-def mysession_list(request):
-    sessions = MySession.objects.filter(is_active=True).order_by('-created_at')
-    context = {
-        'sessions':sessions
-    }
-    return render(request, 'MySession/sessions_list.html',context)
+def mysession_list(request, session_id=None):
+    if session_id:
+        request.session['current_session_id'] = session_id
+        sessions = MySession.objects.get(is_active=True, id = session_id)
+        context = {
+            'sessions':sessions
+        }
+        return render(request, 'MySession/sessions-by-id.html',context)
+    else:
+        sessions = MySession.objects.filter(is_active=True).order_by('-created_at')
+        context = {
+            'sessions':sessions
+        }
+        return render(request, 'MySession/sessions_list.html',context)
 
 @if_is_main
 def add_mysession(request):
@@ -32,10 +40,14 @@ def add_mysession(request):
             
 @if_is_main
 def add_participant(request):
+    session = request.session.get('current_session_id')
+    my_session = MySession.objects.get(id = session)
     if request.method == 'POST':
         form = ParticipantForm(request.POST)
         if form.is_valid():
-            form.save()
+            participant = form.save(commit=False)
+            participant.session = my_session
+            participant.save()
             return redirect('/')
     else:
         form = ParticipantForm()

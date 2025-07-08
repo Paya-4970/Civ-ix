@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="session-detail-container">
+    <!-- هدر صفحه -->
+    <div class="session-header">
+        <h1 class="session-title">
+            <i class="fas fa-calendar-alt"></i>
+            جزئیات جلسه
+        </h1>
+        <div class="session-meta">
+            <span class="meta-item">
+                <i class="fas fa-hashtag"></i>
+                شناسه جلسه: {{sessions.id}}
+            </span>
+        </div>
+    </div>
+
+    <!-- کارت اطلاعات جلسه -->
+    <div class="session-card">
+        <div class="session-info">
+            <h2 class="info-title">{{sessions.title}}</h2>
+            
+            <!-- بخش‌های دیگر اطلاعات جلسه -->
+            {% if sessions.description %}
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="fas fa-align-left"></i>
+                    توضیحات
+                </h3>
+                <p class="section-content">{{sessions.description}}</p>
+            </div>
+            {% endif %}
+            
+            {% if sessions.date %}
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="far fa-calendar"></i>
+                    تاریخ جلسه
+                </h3>
+                <p class="section-content">{{sessions.date}}</p>
+            </div>
+            {% endif %}
+            
+            {% if sessions.location %}
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    محل برگزاری
+                </h3>
+                <p class="section-content">{{sessions.location}}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- دکمه‌های اقدام -->
+        <div class="session-actions">
+            <a href="{% url 'MySession:participant-form' %}" class="action-btn edit-btn">
+                <i class="fas fa-edit"></i>
+                add participants
+            </a>
+            <a href="#" class="action-btn delete-btn">
+                <i class="fas fa-trash-alt"></i>
+                حذف جلسه
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* استایل کلی صفحه */
+    .session-detail-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    /* هدر جلسه */
+    .session-header {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .session-title {
+        font-size: 2rem;
+        color: #2d3748;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .session-meta {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        color: #4a5568;
+        background: #f8fafc;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+    }
+
+    /* کارت اطلاعات جلسه */
+    .session-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+        border: 1px solid #eaeaea;
+    }
+
+    .session-info {
+        margin-bottom: 2rem;
+    }
+
+    .info-title {
+        font-size: 1.5rem;
+        color: #2d3748;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    /* بخش‌های اطلاعات */
+    .info-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+        color: #4a5568;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .section-content {
+        color: #4a5568;
+        line-height: 1.6;
+        padding-right: 2rem;
+    }
+
+    /* دکمه‌های اقدام */
+    .session-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        gap: 0.5rem;
+    }
+
+    .edit-btn {
+        background-color: #f59e0b;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        background-color: #d97706;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(245, 158, 11, 0.2);
+    }
+
+    .delete-btn {
+        background-color: #ef4444;
+        color: white;
+    }
+
+    .delete-btn:hover {
+        background-color: #dc2626;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+    }
+
+    /* واکنش‌گرایی */
+    @media (max-width: 640px) {
+        .session-title {
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .session-actions {
+            flex-direction: column;
+        }
+        
+        .action-btn {
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}

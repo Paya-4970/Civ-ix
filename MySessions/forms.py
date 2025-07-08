@@ -6,6 +6,10 @@ class MySessionForm(forms.ModelForm):
         model = MySession
         fields = ['title','description']
         
+class ParticipantForm(forms.ModelForm):
+    class Meta:
+        model = Participant
+        fields = ['role','user']
 
 class VoteForm(forms.ModelForm):
     class Meta:
@@ -13,7 +17,3 @@ class VoteForm(forms.ModelForm):
         fields = ['decision_option']
         
         
-class ParticipantForm(forms.ModelForm):
-    class Meta:
-        model = Participant
-        fields = ['session','role','user']
