@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="chat-container">
+    <!-- هدر چت -->
+    <div class="chat-header">
+        <div class="user-info">
+            <div class="avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h2>گفتگو با {{ other_user.username }}</h2>
+        </div>
+        <div class="chat-actions">
+            <button class="action-btn">
+                <i class="fas fa-phone"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-video"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- بخش پیام‌ها -->
+    <div class="messages-container">
+        {% for message in messages %}
+        <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}">
+            <div class="message-content">
+                {% if message.sender != request.user %}
+                <div class="sender-name">{{ message.sender.username }}</div>
+                {% endif %}
+                <div class="message-text">{{ message.text }}</div>
+                <div class="message-time">
+                    {{ message.timestamp|date:"H:i" }}
+                    {% if message.sender == request.user %}
+                    <i class="fas fa-check-double"></i>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-chat">
+            <i class="far fa-comment-dots"></i>
+            <p>هنوز پیامی رد و بدل نشده است</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- فرم ارسال پیام -->
+    <div class="message-form-container">
+        <form method="post" class="message-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.text }}
+                <button type="submit" class="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/message/chat.css' %}">
+{% endblock %}

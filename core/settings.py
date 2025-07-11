@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'MyUser',
     'MySessions',
     'web',
+    'MyMessages',
 ]
 
 MIDDLEWARE = [

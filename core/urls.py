@@ -23,4 +23,5 @@ urlpatterns = [
     path('scenario/', include('scenario.urls')),
     path('accounts/', include('MyUser.urls')),
     path('sessions/', include('MySessions.urls')),
+    path('chat/', include('MyMessages.urls')),
 ]
