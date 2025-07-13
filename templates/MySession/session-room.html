@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="font-sans bg-gray-50 min-h-screen">
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <!-- Session Header -->
+        <div class="flex justify-between items-center pb-4 mb-6 border-b border-gray-200">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="text-indigo-600 text-2xl">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">جلسه: {{ session.title }}</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    <i class="fas fa-circle text-xs mr-1"></i>
+                    جلسه فعال
+                </span>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Participants Section (Left Sidebar) -->
+            <div class="lg:w-1/4 bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center space-x-2 space-x-reverse mb-4">
+                    <i class="fas fa-users text-indigo-600"></i>
+                    <h3 class="font-semibold text-gray-700">شرکت‌کنندگان</h3>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">{{ participants.count }}</span>
+                </div>
+                
+                <div class="space-y-3">
+                    {% for participant in participants %}
+                    <div class="flex items-center p-2 hover:bg-gray-50 rounded-lg transition">
+                        <div class="text-3xl text-gray-400 ml-3">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="flex-1 flex items-center justify-between">
+                            <span class="font-medium text-gray-700">{{ participant.user.username }}</span>
+                            {% if participant.user == request.user %}
+                            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">شما</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Main Content (Center) -->
+            <div class="lg:w-2/4 bg-white rounded-lg shadow-sm p-4">
+                <!-- Chat Section -->
+                <div class="flex flex-col h-full">
+                    <div class="flex items-center space-x-2 space-x-reverse mb-4">
+                        <i class="fas fa-comments text-indigo-600"></i>
+                        <h3 class="font-semibold text-gray-700">گفتگو</h3>
+                    </div>
+                    
+                    <div class="flex-1 overflow-y-auto bg-gray-50 rounded-lg p-4 mb-4 space-y-3">
+                        {% for message in messages %}
+                        <div class="flex {% if message.sender == request.user %}justify-end{% else %}justify-start{% endif %}">
+                            <div class="max-w-xs lg:max-w-md rounded-lg p-3 {% if message.sender == request.user %}bg-indigo-100 text-gray-800 rounded-br-none{% else %}bg-white border border-gray-200 rounded-bl-none{% endif %}">
+                                <div class="font-semibold text-sm">{{ message.sender.username }}</div>
+                                <div class="text-gray-700 my-1">{{ message.text }}</div>
+                                <div class="text-xs text-gray-500 text-left">{{ message.timestamp|date:"H:i" }}</div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                            <i class="far fa-comment-dots text-4xl mb-2"></i>
+                            <p>هنوز پیامی ارسال نشده است</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <form method="post" class="mt-auto">
+                        {% csrf_token %}
+                        <div class="flex space-x-2 space-x-reverse">
+                            <fieldset>
+                                <input style="border: #818cf8 2px dashed;width: 500px; height: 50px;" type="text" name="text">
+                            </fieldset>
+                            <button style="height: 50px;" type="submit" name="message" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition">
+                                <i class="fas fa-paper-plane ml-2"></i>
+                                ارسال
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {% if not already_voted %}
+            <!-- Vote Section (Right Sidebar) -->
+            <div class="lg:w-1/4 bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center space-x-2 space-x-reverse mb-4">
+                    <i class="fas fa-vote-yea text-indigo-600"></i>
+                    <h3 class="font-semibold text-gray-700">رأی‌گیری</h3>
+                </div>
+                
+                    
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        {{ vote_form }}
+                    </div>
+                    <button type="submit" name="vote" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg flex items-center justify-center transition">
+                        <i class="fas fa-check-circle ml-2"></i>
+                        ثبت رأی
+                    </button>
+                </form>
+                
+                    
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles to enhance Adobe Connect feel */
+    body {
+        font-family: 'Vazirmatn', sans-serif;
+    }
+    
+    /* Chat message input */
+    #id_text {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+    }
+    
+    #id_text:focus {
+        outline: none;
+        border-color: #818cf8;
+        box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+    }
+    
+    /* Vote form select */
+    #id_option {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        background-color: white;
+        transition: border-color 0.2s;
+    }
+    
+    #id_option:focus {
+        outline: none;
+        border-color: #818cf8;
+        box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #c7d2fe;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a5b4fc;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .lg\:w-1\/4 {
+            width: 100%;
+        }
+        
+        .lg\:w-2\/4 {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}

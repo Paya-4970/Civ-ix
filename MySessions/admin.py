@@ -17,7 +17,7 @@ class ParticipantAdmin(admin.ModelAdmin):
     
 @admin.register(Vote)
 class VoteAdmin(admin.ModelAdmin):
-    list_display = ('participant', 'decision_option', 'created_at', 'updated_at', 'is_active')
+    list_display = ('participant', 'decision_option', 'created_at', 'updated_at', 'is_active','done')
     list_filter = ('participant', 'decision_option', 'is_active')
     search_fields = ('participant__user__username', 'decision_option__title')
     list_per_page = 10

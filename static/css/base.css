@@ -1,5 +1,5 @@
 *{
-    margin: 0 10px;
+    margin: 0;
 }
 /* تعریف فونت Vazir */
 @font-face {
@@ -21,9 +21,10 @@
         
         body {
             /* font-family: Vazirmatn, sans-serif; */
-            /* background-color: #f1f1f1f1; */
-            background-color: black;
-            color: #fff;
+            background-color: #f1f1f1f1;
+            color: black;
+            /* background-color: black;
+            color: #fff; */
             font-family: 'Vazir', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         

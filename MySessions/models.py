@@ -17,7 +17,7 @@ class MySession(models.Model):
         return f'{self.user.username} - {self.scenario.title}'
 
 class Participant(models.Model):
-    session = models.ForeignKey(MySession, on_delete=models.CASCADE, related_name='participant')
+    session = models.ForeignKey(MySession, on_delete=models.CASCADE, related_name='participant_set')
     role = models.ForeignKey(Role, on_delete=models.CASCADE, default='common')
     is_active = models.BooleanField(default=True)
     joined_at = models.DateTimeField(auto_now_add=True)
@@ -33,12 +33,17 @@ class Vote(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    done = models.BooleanField(default=False, null=True, blank=True)
     
     class Meta:
         unique_together = ('participant', 'decision_option')
         
     def __str__(self):
-        return f'{self.participant.user.username} - {self.decision_option.title}'
+        return f' {self.decision_option.title}'
+    
+    def make_done(self):
+        self.done = True
+        self.save()
     
     
     
