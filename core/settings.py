@@ -138,3 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SESSIONS SETTINGS 
 SESSION_COOKIE_AGE = 1209600  # مدت زمان به ثانیه = 2 هفته
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
+
+

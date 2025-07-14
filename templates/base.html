@@ -2,24 +2,26 @@
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سایت</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
-    
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Font Persian -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
-    
+
 </head>
+
 <body class="min-h-screen flex flex-col">
     <!-- هدر سایت -->
     <header class="gradient-bg text-white shadow-lg">
@@ -32,27 +34,46 @@
                     </div>
                     <h1 class="text-2xl font-bold">سایت <span class="text-yellow-300">ایرانی</span> من</h1>
                 </div>
-                
+
                 <!-- منوی ناوبری -->
                 <nav class="flex flex-wrap justify-center gap-6 md:gap-8">
                     <a href="/" class="nav-item text-lg font-medium hover:text-yellow-300 transition">خانه</a>
                     <a href="/about" class="nav-item text-lg font-medium hover:text-yellow-300 transition">درباره ما</a>
                     <a href="/services" class="nav-item text-lg font-medium hover:text-yellow-300 transition">خدمات</a>
                     <a href="/blog" class="nav-item text-lg font-medium hover:text-yellow-300 transition">بلاگ</a>
-                    <a href="/contact" class="nav-item text-lg font-medium hover:text-yellow-300 transition">تماس با ما</a>
+                    <a href="/contact" class="nav-item text-lg font-medium hover:text-yellow-300 transition">تماس با
+                        ما</a>
                 </nav>
-                
+
                 <!-- دکمه‌های اقدام -->
+
+                {% if request.user.is_authenticated %}
                 <div class="mt-4 md:mt-0 flex gap-3">
                     <button class="btn-primary px-4 py-2 rounded-lg text-white font-medium flex items-center">
                         <i class="fas fa-user-plus ml-2"></i>
-                        ثبت نام
+                        <a href="{% url 'accounts:logout' %}">خروج</a>
                     </button>
                     <button class="btn-secondary px-4 py-2 rounded-lg text-white font-medium flex items-center">
-                        <i class="fas fa-sign-in-alt ml-2"></i>
-                        ورود
+                        <a href="#">سلام {{user}}</a>
                     </button>
                 </div>
+                {% else %}
+                <div class="mt-4 md:mt-0 flex gap-3">
+                    <button class="btn-primary px-4 py-2 rounded-lg text-white font-medium flex items-center">
+                        <i class="fas fa-user-plus ml-2"><a href="{% url 'accounts:register' %}">ثبت نام</a></i>
+                        
+                    </button>
+                    <button class="btn-secondary px-4 py-2 rounded-lg text-white font-medium flex items-center">
+                        <i class="fas fa-sign-in-alt ml-2">
+                            <a href="{% url 'accounts:login' %}">ورود</a>
+                        </i>
+                        
+                    </button>
+                </div>
+                {% endif %}
+
+
+
             </div>
         </div>
     </header>
@@ -72,27 +93,37 @@
                 <div class="md:col-span-2">
                     <h3 class="text-xl font-bold mb-4 text-yellow-300">درباره ما</h3>
                     <p class="text-slate-300 leading-relaxed">
-                        سایت ایرانی من یک پلتفرم مدرن و شیک برای ارائه خدمات دیجیتال به کاربران فارسی زبان است. ما با آخرین تکنولوژی‌های روز دنیا در خدمت شما هستیم.
+                        سایت ایرانی من یک پلتفرم مدرن و شیک برای ارائه خدمات دیجیتال به کاربران فارسی زبان است. ما با
+                        آخرین تکنولوژی‌های روز دنیا در خدمت شما هستیم.
                     </p>
                     <div class="mt-4 flex gap-4">
-                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i
+                                class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-yellow-300 text-2xl"><i
+                                class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                
+
                 <!-- لینک‌های سریع -->
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-yellow-300">لینک‌های سریع</h3>
                     <ul class="space-y-2">
-                        <li><a href="/privacy" class="footer-link text-slate-300 hover:text-yellow-300 transition">قوانین و حریم خصوصی</a></li>
-                        <li><a href="/faq" class="footer-link text-slate-300 hover:text-yellow-300 transition">سوالات متداول</a></li>
-                        <li><a href="/support" class="footer-link text-slate-300 hover:text-yellow-300 transition">پشتیبانی</a></li>
-                        <li><a href="/sitemap" class="footer-link text-slate-300 hover:text-yellow-300 transition">نقشه سایت</a></li>
+                        <li><a href="/privacy"
+                                class="footer-link text-slate-300 hover:text-yellow-300 transition">قوانین و حریم
+                                خصوصی</a></li>
+                        <li><a href="/faq" class="footer-link text-slate-300 hover:text-yellow-300 transition">سوالات
+                                متداول</a></li>
+                        <li><a href="/support"
+                                class="footer-link text-slate-300 hover:text-yellow-300 transition">پشتیبانی</a></li>
+                        <li><a href="/sitemap" class="footer-link text-slate-300 hover:text-yellow-300 transition">نقشه
+                                سایت</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- اطلاعات تماس -->
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-yellow-300">تماس با ما</h3>
@@ -112,7 +143,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <!-- کپی رایت -->
             <div class="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400">
                 <p>تمامی حقوق برای سایت ایرانی من محفوظ است. © ۱۴۰۲</p>
@@ -121,4 +152,5 @@
     </footer>
 
 </body>
+
 </html>
